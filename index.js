@@ -2,22 +2,46 @@ const path = require("path");
 const fs = require("fs");
 
 let wordPath = path.join(__dirname, "./words");
-var EOL = require("os").EOL;
+let EOL = require("os").EOL;
 
-const getFilename = async () => {
-  let adverbFile = path.join(wordPath, "adverbs.txt");
-  let adjectiveFile = path.join(wordPath, "adjectives.txt");
-  let nounFile = path.join(wordPath, "nouns.txt");
+const ADVB_FILE = path.join(wordPath, "adverbs.txt");
+const NOUN_FILE = path.join(wordPath, "nouns.txt");
+const ADJ_FILE = path.join(wordPath, "adjectives.txt");
 
-  let adverbs = fs.readFileSync(adverbFile, "utf8").split(EOL);
-  let nouns = fs.readFileSync(nounFile, "utf8").split(EOL);
-  let adjectives = fs.readFileSync(adjectiveFile, "utf8").split(EOL);
+module.exports = (pattern) => {
+  let result = pattern.replace(/{{\w+}}/g, (match) => {
+    let type = match.match(/(?<={{)(.+)(?=}})/);
+    switch (type[0]) {
+      case "adj":
+        return getAdjective();
+      case "adv":
+        return getAdverb();
+      case "n":
+        return getNoun();
+      default:
+        return "";
+    }
+  });
 
-  let adverb = getRandomWord(adverbs);
-  let adjective = getRandomWord(adjectives);
-  let noun = getRandomWord(nouns);
+  return result;
+};
 
-  return `${adverb}-${adjective}-${noun}`;
+const getAdverb = () => {
+  let adverbs = fs.readFileSync(ADVB_FILE, "utf8").split(EOL);
+
+  return getRandomWord(adverbs);
+};
+
+const getNoun = () => {
+  let nouns = fs.readFileSync(NOUN_FILE, "utf8").split(EOL);
+
+  return getRandomWord(nouns);
+};
+
+const getAdjective = () => {
+  let adjectives = fs.readFileSync(ADJ_FILE, "utf8").split(EOL);
+
+  return getRandomWord(adjectives);
 };
 
 const getRandomWord = (words) => {
@@ -29,7 +53,3 @@ const getRandomWord = (words) => {
 
   return word;
 };
-
-console.log(getFilename());
-
-module.exports.getFilename = getFilename;
