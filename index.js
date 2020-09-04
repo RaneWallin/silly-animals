@@ -8,7 +8,7 @@ const ADVB_FILE = path.join(wordPath, "adverbs.txt");
 const NOUN_FILE = path.join(wordPath, "nouns.txt");
 const ADJ_FILE = path.join(wordPath, "adjectives.txt");
 
-module.exports = (pattern) => {
+module.exports = (pattern = "{{adj}} {{adv}} {{n}}") => {
   let result = pattern.replace(/{{\w+}}/g, (match) => {
     let type = match.match(/(?<={{)(.+)(?=}})/);
     switch (type[0]) {
