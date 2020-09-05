@@ -1,6 +1,6 @@
 {
   "name": "silly-animals",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create fun and interesting URLs and file names with silly animals",
   "main": "index.js",
   "scripts": {
