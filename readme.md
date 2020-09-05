@@ -37,6 +37,7 @@ npm install
 ## Release History
 
 - 1.0.0 initial release
+- 1.0.1 Added default template and removed uneeded dependency
 
 ## Meta
 
