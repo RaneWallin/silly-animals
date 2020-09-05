@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/RaneWallin/silly-animals/issues"
   },
-  "homepage": "https://github.com/RaneWallin/silly-animals#readme",
-  "dependencies": {
-    "sanitize-words": "^1.0.1"
-  }
+  "homepage": "https://github.com/RaneWallin/silly-animals#readme"
 }
